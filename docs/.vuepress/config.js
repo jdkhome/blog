@@ -23,6 +23,12 @@ module.exports = {
                 'milestone-20190718',
                 'test-markdown'
             ],
+            '/dev-ops/service-build/': [
+                '',
+                'database',
+                'ethereum-client-go',
+                'other'
+            ],
             // fallback
            
         },
