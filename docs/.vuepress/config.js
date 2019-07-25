@@ -7,7 +7,7 @@ module.exports = {
     ],
     themeConfig: {
         nav: [
-            { text: 'other', link: '/other/' },
+            { text: '服务搭建', link: '/dev-ops/service-build/' },
             { text: 'links', link: '/links' },
             {
                 text: 'about', items: [
@@ -18,11 +18,6 @@ module.exports = {
             },
         ],
         sidebar: {
-            '/other/': [
-                '',
-                'milestone-20190718',
-                'test-markdown'
-            ],
             '/dev-ops/service-build/': [
                 '',
                 'database',
