@@ -24,6 +24,11 @@ module.exports = {
                 'ethereum-client-go',
                 'other'
             ],
+            '/blzo/': [
+                '',
+                'manage-dev',
+                'manage-auth-use'
+            ],
             // fallback
            
         },
