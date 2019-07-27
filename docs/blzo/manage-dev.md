@@ -85,7 +85,7 @@ authj的工作原理主要在以下3点:
 
 ### 数据字典
 
-authj 共有6张表
+authj 共有6张表，这些表的结构都很简单，其中的日志表会保存所有的页面接口请求记录。组织表的作用会在后面的内容中讲解。
 
 ```
 - admins            管理员
@@ -95,3 +95,288 @@ authj 共有6张表
 - logs              操作日志表
 - organizes         组织表
 ```
+
+每个管理员可以创建多个权限组，以及加入多个权限组，每个权限组可以包含多个权限实体
+
+#### admins表
+
+```sql
+DROP TABLE IF EXISTS `admins`;
+CREATE TABLE `admins` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员Id',
+  `nick_name` varchar(64) NOT NULL COMMENT '用户昵称',
+  `username` varchar(50) NOT NULL COMMENT '登陆名',
+  `password` varchar(32) NOT NULL COMMENT '密码(加盐MD5)',
+  `salt` varchar(64) NOT NULL COMMENT '盐',
+  `google_secret` varchar(255) DEFAULT NULL COMMENT 'google验证码secret',
+  `phone` varchar(20) DEFAULT NULL COMMENT '手机号',
+  `email` varchar(64) DEFAULT NULL COMMENT '邮箱',
+  `status` int(2) NOT NULL DEFAULT '0' COMMENT '状态(暂未实装) 0:初始状态 1:正常使用 -1:冻结',
+  `last_ip` varchar(20) DEFAULT NULL COMMENT '最后登录的IP',
+  `last_time` datetime DEFAULT NULL COMMENT '最后登录的时间',
+  `remark` varchar(255) DEFAULT '' COMMENT '备注',
+  `layer` varchar(8192) DEFAULT NULL COMMENT '菜单配置',
+  `organize_id` int(11) DEFAULT NULL COMMENT '组织id',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_KEY` (`username`) USING BTREE,
+  KEY `phone_KEY` (`phone`) USING BTREE,
+  KEY `email_KEY` (`email`) USING BTREE,
+  KEY `status_KEY` (`status`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='管理员表';
+```
+
+#### groups、group_admin、group_auth 表
+
+```sql
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增ID',
+  `name` varchar(32) NOT NULL COMMENT '管理员组名称',
+  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `create_admin_id` int(11) NOT NULL COMMENT '创建者ID',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `create_KEY` (`create_admin_id`) USING BTREE,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限组';
+
+DROP TABLE IF EXISTS `group_admin`;
+CREATE TABLE `group_admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '组ID',
+  `group_id` int(11) NOT NULL,
+  `admin_id` int(11) NOT NULL,
+  `create_admin_id` int(11) NOT NULL COMMENT '创建人ID',
+  `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id_admin_id_UNIQUE` (`group_id`,`admin_id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='权限组-管理员关联表';
+
+DROP TABLE IF EXISTS `group_auth`;
+CREATE TABLE `group_auth` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `group_id` int(11) NOT NULL,
+  `uri` varchar(255) NOT NULL,
+  `create_admin_id` int(11) NOT NULL COMMENT '创建人ID',
+  `remark` varchar(255) DEFAULT '' COMMENT '备注',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `group_id_auth_uri_UNIQUE` (`group_id`,`uri`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=386 DEFAULT CHARSET=utf8mb4 COMMENT='权限组-权限实体关联表';
+```
+
+## 管理后台开发指南
+
+### 技术栈
+
+#### blzo 脚手架 / blzo-ex-authj 权限组件
+
+spring boot 2.x + mybatis
+
+#### 页面渲染：thymeleaf 模板引擎
+
+> thymeleaf 是spring boot官方推荐的模板引擎
+
+[Thymeleaf 官方文档](https://www.thymeleaf.org/documentation.html)thymeleaf.org  
+[Thymeleaf 教程](https://waylau.gitbooks.io/thymeleaf-tutorial/content/)waylau  
+
+#### 前端主题模板
+
+> 建议把这个模板clone下来，它可以给你在开发时带来诸多参考
+
+[BucketAdmin](https://gitee.com/themehub/BucketAdmin)themehub
+
+### 管理后台项目结构
+
+```
+src/main
+    |- java
+    |   |- com.jdkhome.blzo.manage
+    |       |- configuration    // 配置包，多数据源配置或者一些自定义的bean放在这里
+    |       |- controller       // controller层代码
+    |       |   |- CommonControllerAdvice.java // 所有@Controller执行之前，会先执行这里
+    |       |   |- ...
+    |       |    
+    |       |- pojo                     // 无逻辑对象包
+    |       |- ManageApplication.java   // 启动类，可以在这里增加一些启动后自动执行的方法
+    |
+    |- resource
+        |- static       // 静态资源文件
+        |   |- common   // 放logo等其他图片
+        |   |- manage 
+        |       |- custom       // 自定义的js文件目录
+        |       |   |- common   // 公共js
+        |       |   |   |- base.js      // 封装ajax请求
+        |       |   |   |- request.js   // 接口声明js
+        |       |   |   |- search.js    // 搜索功能实现
+        |       |   |    
+        |       |   |- page // 自定义页面的js
+        |       |
+        |       |- js // 管理后台的一些js插件建议放在这里
+        |       |- ...
+        |
+        |- templates    // thymeleaf 模板文件目录
+        |   |- error    // 404、500页面
+        |   |- manage   // 管理后台的thymeleaf模板目录
+        |       |- common   // 功能模板组件，比如菜单、分页器等
+        |       |- page     // 自定义页面的模板目录
+        |       |- ...
+        |
+        |- application.yml      // 主配置文件
+        |- application-dev.yml  // 开发环境配置文件
+        |- application-test.yml // 测试环境配置文件
+        |- application-pro.yml  // 生产环境配置文件
+
+```
+
+### 快速开始
+
+现在我们开始在BLZO管理后台中开发你的第一个页面和接口！
+
+#### controller层 接口和页面的控制器
+
+[DemoApiController.java](https://github.com/jdkhome/blzo-ex/blob/master/blzo-manage/src/main/java/com/jdkhome/blzo/manage/controller/demo/DemoApiController.java) demo接口controller
+
+
+[DemoPageController.java](https://github.com/jdkhome/blzo-ex/blob/master/blzo-manage/src/main/java/com/jdkhome/blzo/manage/controller/demo/DemoPageController.java) demo页面controller
+
+#### 前端页面和js
+
+[demo.html](https://github.com/jdkhome/blzo-ex/blob/master/blzo-manage/src/main/resources/templates/manage/demo.html)demo页面html模板
+
+在[request.js](https://github.com/jdkhome/blzo-ex/blob/master/blzo-manage/src/main/resources/static/manage/custom/common/request.js)中声明你的接口
+```js
+// DEMO API
+Request.apiDemoApi = function (context, data, event, callbacks) {
+    Base.doPost('/api/manage/demo/my_api', context, data, event, callbacks);
+};
+```
+
+[demo.js](https://github.com/jdkhome/blzo-ex/blob/master/blzo-manage/src/main/resources/static/manage/custom/page/demo.js) demo页面对应的js文件
+
+#### 启动!
+
+使用超级管理员账户登录BLZO管理后台
+
+在"未分组"菜单组中 即可找到**demo页面**。
+
+### 特性使用
+
+#### 打印日志
+
+任何接口，加上@Api注解即可自动打印日志
+
+#### 设置权限实体
+
+任何接口，加入@Authj注解即可完成权限实体的设置
+
+Authj目前有4个属性
+
+- value     权限实体的名称，如果不设置则会从@Api注解中获取
+- auth      是否需要鉴权 如果不设置，则默认为true
+- menu      是否能够作为菜单 如果不设置，则默认为false
+- common    是否为公共权限 如果不设置，则默认为false
+
+公共权限: 只要登录就有权限
+
+#### 列表页常见需求
+
+数据筛选，blzo管理后台的列表数据筛选是通过页面控制器改变请求参数实现的  
+在页面的Controller方法中设置你要筛选的条件，并在html中初始化Search对象
+```html
+<script>
+    window.onload = function () {
+        var search = new window.controller.Search();
+        search.init();
+    };
+</script>
+```
+
+分页器，blzo使用mybatis-pagehelper插件实现分页  
+在需要分页的页面控制器，Model中传入"PageInfo"，在页面中引入分页器模板组件即可实现分页
+```html
+<div th:replace="manage/common/paginate"></div>
+```
+
+> 你可以参考 管理员列表页 来获取这些功能的示例
+
+#### 在任何地方获取管理员Id
+
+注入AuthjManager，然后在你需要的地方使用getUserId()方法
+```java
+@Autowired
+AuthjManager authjManager;
+...
+Integer userId = authjManager.getUserId();
+...
+```
+
+#### 获取更多页面示例
+
+请参考前端主题模板  
+[BucketAdmin](https://gitee.com/themehub/BucketAdmin)themehub
+
+### 数据权限开发
+
+在authj中，使用组织的方式实现数据权限。组织功能是可选的，并不会强制使用。
+
+#### 业务场景
+
+使用组织功能之前，你需要明确你的项目是否真的需要它，组织功能是有侵入业务的。
+
+一个典型的使用场景是:  
+管理后台被两个不同地区的业务团队所使用，两个地区运营的业务相同，但是我们希望A地区的运营，只能看到A地区的数据，B地区的运营，只能看到B地区的数据。
+
+在这样的场景下，你有两种处理方案:
+
+1. 为A、B地区各部署一套服务，两套服务数据分库互不干扰
+2. 使用authj的"组织"功能 为每一个希望有数据权限的表增加"组织Id字段"
+
+两个方案各有各的好处，方案1不会侵入业务，方案2则在管理上更具统一性。
+
+#### 组织功能的现有能力
+
+系统默认userId=0的用户为超级管理员，同样，组织Id=0的组织为总组织。
+
+每个用户都只能加入一个组织，不同组织的管理员，互相不可见。属于总组织的用户可以管理所有组织。
+
+## 开发自己的管理后台
+
+blzo自带的管理后台能够适用大多数场景，但正如所有脚手架一样，快捷的同时也会在一定程度上产生约束。
+
+如果你的产品(或是客户)，希望能够定制管理后台的其他样式；又或是你希望用其他技术栈去实现体验更好的管理后台(比如vue)；那么你可能需要重新开发一个新的管理后台。
+
+本节默认你已经通读了前面的内容，并且已经阅读了[blzo-ex-authj](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-authj)的代码。
+
+### 管理员登陆
+
+使用 authjManager.grant(userId) 方法，为当前登录的session进行授权。
+
+```java
+@Autowired
+AuthjManager authjManager;
+...
+// 对当前登陆的session进行授权
+authjManager.grant(userId);
+// 对当前登录的session移除授权
+authjManager.delGrant();
+...
+```
+
+### 授权实体
+
+授权实体中包含了当前session的所有权限 和 菜单配置
+
+```java
+@Autowired
+AuthjManager authjManager;
+...
+// 获取当前登陆用户的授权实体
+UserAuthjConfBean userAuthjConfBean = authjManager.getUserAuthjConfBean();
+...
+```
+
