@@ -3,8 +3,7 @@
 
 ## 开源项目
 
-[BLZO](https://gitee.com/jdkhome/blzo)基于springboot的企业级超级脚手架！  
-[BLZO-EX](https://github.com/jdkhome/blzo-ex)blzo扩展 
+[BLZO](/blzo)基于springboot的企业级超级脚手架！  
 
 ## some
 
