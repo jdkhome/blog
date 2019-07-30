@@ -224,3 +224,7 @@ gradle publishMavenJavaPublicationToSonatypeSnapshotRepository
 gradle publishMavenJavaPublicationToSonatypeRepository
 ```
 
+## 参考链接
+
+[将Gradle项目发布到Maven Central库中](https://segmentfault.com/a/1190000017309880)HamilFei
+[发布包到 maven 仓库](https://zq99299.github.io/note-book/gradle/push-to-maven.html)zq99299
