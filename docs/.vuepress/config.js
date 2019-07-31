@@ -29,6 +29,20 @@ module.exports = {
                 'manage-dev',
                 'manage-auth-use'
             ],
+            '/blzo-ex/': [
+                '',
+                'blzo-ex-basic',
+                'blzo-ex-utils',
+                'blzo-ex-version',
+                'blzo-ex-usignin',
+                'blzo-ex-redission',
+                'blzo-ex-ip2region',
+                'blzo-ex-consul',
+                'blzo-ex-mqtt',
+                'blzo-ex-task',
+                'blzo-ex-google-auth',
+                'blzo-ex-authj'
+            ],
             // fallback
            
         },

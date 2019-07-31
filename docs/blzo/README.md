@@ -24,18 +24,18 @@
 非常轻量的脚手架，所有功能全部热插拔且拿来即用(全部功能都是jar包，脚手架就是一个空项目壳子！). 
 目前已集成:
 
-> 点击模块查看使用方法(文档未完成)
-- [blzo-ex-consul](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-consul)springcloud+consul
-- [blzo-ex-google-auth](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-google-auth)google身份验证器
-- [blzo-ex-ip2region](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-ip2region)ip定位城市
-- [blzo-ex-mqtt](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-mqtt)使用mqtt协议推送数据
-- [blzo-ex-redission](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-redission)轻松使用分布式锁
-- [blzo-ex-task](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-task)分布式任务(开发中)
-- [blzo-ex-usignin](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-usignin)用户登陆鉴权
-- [blzo-ex-authj](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-authj)权限框架(自研的权限框架)
-- [blzo-ex-version](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-version)接口版本管理
-- [blzo-ex-utils](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-utils)常用工具类
-- [blzo-ex-basic](https://github.com/jdkhome/blzo-ex/tree/master/blzo-ex-basic)自动日志、异常管理等
+> 点击模块查看使用方法
+- [blzo-ex-consul](/blzo-ex/blzo-ex-consul)springcloud+consul
+- [blzo-ex-google-auth](/blzo-ex/blzo-ex-google-auth)google身份验证器
+- [blzo-ex-ip2region](/blzo-ex/blzo-ex-ip2region)ip定位城市
+- [blzo-ex-mqtt](/blzo-ex/blzo-ex-mqtt)使用mqtt协议推送数据
+- [blzo-ex-redission](/blzo-ex/blzo-ex-redission)轻松使用分布式锁
+- [blzo-ex-task](/blzo-ex/blzo-ex-task)分布式任务(开发中)
+- [blzo-ex-usignin](/blzo-ex/blzo-ex-usignin)用户登陆鉴权
+- [blzo-ex-authj](/blzo-ex/blzo-ex-authj)权限框架(自研的权限框架)
+- [blzo-ex-version](/blzo-ex/blzo-ex-version)接口版本管理
+- [blzo-ex-utils](/blzo-ex/blzo-ex-utils)常用工具类
+- [blzo-ex-basic](/blzo-ex/blzo-ex-basic)自动日志、异常管理等
 
 
 ## 感谢
