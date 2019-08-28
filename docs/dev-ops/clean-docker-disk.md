@@ -70,6 +70,3 @@ sudo docker rm -fv 容器名
 sudo find /data -name "*.log.*" | sudo xargs rm -f
 ```
 
-
-
-

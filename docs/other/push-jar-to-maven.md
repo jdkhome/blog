@@ -182,7 +182,7 @@ signing {
 
 ```
 
-## 发布
+## Push
 
 对于发布来说，有2个地址，对应前面**build.gradle**中，我们配置的2个可以发布的仓库
 
@@ -223,6 +223,15 @@ gradle publishMavenJavaPublicationToSonatypeSnapshotRepository
 # 发release
 gradle publishMavenJavaPublicationToSonatypeRepository
 ```
+
+## 发布
+
+登录到
+
+https://oss.sonatype.org
+
+选择"Staging Repositories"，找到刚才推得jar包(一般在列表最下面)。确认没问题的话点击close,然后点击release即可
+
 
 ## 参考链接
 
