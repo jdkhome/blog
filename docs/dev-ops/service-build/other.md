@@ -161,6 +161,18 @@ sudo docker run -d \
 consul
 ```
 
+## sonarqube
+
+```
+docker run -d --name sonarqube \
+    -p 9000:9000 \
+    -v /data/sonar/conf:/opt/sonarqube/conf \
+    -v /data/sonar/data:/opt/sonarqube/data \
+    -v /data/sonar/logs:/opt/sonarqube/logs \
+    -v/data/sonar/extensions:/opt/sonarqube/extensions \
+    sonarqube
+```
+
 
 ## rabbitmq
 
