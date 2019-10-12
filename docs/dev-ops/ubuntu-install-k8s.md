@@ -1,6 +1,9 @@
+---
+sidebar: auto
+---
+
+
 # 国内环境 ubuntu18 安装 k8s
-
-
 
 ## 环境准备
 
