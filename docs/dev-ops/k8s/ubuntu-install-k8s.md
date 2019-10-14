@@ -1,8 +1,3 @@
----
-sidebar: auto
----
-
-
 # 国内环境 ubuntu18 安装 k8s
 
 ## 环境准备
@@ -114,7 +109,7 @@ sudo docker tag coredns/coredns:1.6.2 k8s.gcr.io/coredns:1.6.2
 ## 初始化Master
 
 ```
-kubeadm init --pod-network-cidr=10.244.0.0/16
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
 执行完成后就完成了Kubernetes Master的部署了, 最后还打印出加入Worker加入Master的命令, 需要找个地方记下来。
@@ -122,6 +117,12 @@ kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 sudo kubeadm join 192.168.12.98:6443 --token tearz2.rvquwsv5gd7ds8tn \
     --discovery-token-ca-cert-hash sha256:dd0674653ecc31f204a8f81d0eb91a14664a005fb05a61f56532fd977f14c7a4 
+```
+
+如果不小心忘记了，可以执行
+
+```
+kubeadm token create --print-join-command --ttl 0
 ```
 
 另外, kubeadm 还会提示我们第一次使用 Kubernetes 集群所需要的配置命令:
