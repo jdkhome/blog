@@ -24,10 +24,14 @@ module.exports = {
                 'ethereum-client-go',
                 'other'
             ],
-            '/dev-ops/k8s/': [
+            '/dev-ops/kubernetes/': [
                 '',
                 'ubuntu-install-k8s',
-                'master-ip-change'
+                'deploy-nginx',
+                'deploy-elk',
+                'crash-loop-back-off',
+                'filebeat-node-get-log',
+                'master-ip-change',
             ],
             '/blzo/': [
                 '',

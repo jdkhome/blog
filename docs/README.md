@@ -1,6 +1,10 @@
 
 # linkji's blog!
 
+## 推荐
+
+[Kubernets学习记录](/dev-ops/kubernets) 我的k8s实践 
+
 ## 开源项目
 
 [BLZO](/blzo)基于springboot的企业级超级脚手架！  
