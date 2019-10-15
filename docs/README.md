@@ -3,7 +3,7 @@
 
 ## 推荐
 
-[Kubernets学习记录](/dev-ops/kubernets) 我的k8s实践 
+[Kubernets学习记录](/dev-ops/kubernetes) 我的k8s实践 
 
 ## 开源项目
 
