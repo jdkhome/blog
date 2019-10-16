@@ -31,7 +31,9 @@ module.exports = {
                 'deploy-elk',
                 'crash-loop-back-off',
                 'filebeat-node-get-log',
+                'proactive-log-cleanup',
                 'master-ip-change',
+                'restart-pod',
             ],
             '/blzo/': [
                 '',

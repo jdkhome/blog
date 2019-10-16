@@ -50,6 +50,7 @@ spec:
        ports: 
        - containerPort: 5601
        - containerPort: 5044
+       - containerPort: 9200
 ```
 
 如上所示，暴露了2个端口
@@ -89,7 +90,25 @@ spec:
     app: elk
 ```
 
-将kibana的5601端口以NodePort的方式对外暴露，这样外部就可以通过节点IP地址来访问kibana服务了，创建部署脚本elkkibana-svc.yaml，kibana的服务通过node节点的30001端口对外暴露
+将kibana的5601端口以NodePort的方式对外暴露，这样外部就可以通过节点IP地址来访问kibana服务了，创建部署脚本elk-kibana-service.yaml，kibana的服务通过node节点的30001端口对外暴露
+
+elk-elastic-service.yaml
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: elk-elastic-service
+spec:
+  type: ClusterIP
+  ports:
+       - port: 9200
+         targetPort: 9200
+  selector:
+    app: elk
+```
+
+将elasticsearch的9200端口以ClusterIP的方式对外暴露，方便集群服务维护日志(比如查询、清理等)
 
 elk-logstash-service.yaml
 
@@ -107,14 +126,14 @@ spec:
     app: elk
 ```
 
-将logstash的5044端口以ClusterIP的方式对外暴露，这样其他pod的filebeat就可以通过服务名加5044端口来访问logstash服务了，创建部署脚本elkhost-svc.yaml，logstash的服务通过5044端口对K8S内部的pod暴露
+将logstash的5044端口以ClusterIP的方式对外暴露，这样其他pod的filebeat就可以通过服务名加5044端口来访问logstash服务了，创建部署脚本elk-logstash-service.yaml，logstash的服务通过5044端口对K8S内部的pod暴露
 
 发布服务
 
-```sh
-ubuntu@master:~/my-study-data/elk$ kubectl create -f elk-kibana-service.yaml && kubectl create -f elk-logstash-service.yaml
-service/elk-kibana-service created
-service/elk-logstash-service created
+```
+kubectl create -f elk-kibana-service.yaml
+kubectl create -f elk-elastic-service.yaml
+kubectl create -f elk-logstash-service.yaml
 ```
 
 打开浏览器, 输入任意节点ip:30001, 即可访问到Kibana服务.
