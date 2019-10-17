@@ -18,12 +18,14 @@ module.exports = {
             },
         ],
         sidebar: {
+            // 常用服务搭建文档
             '/dev-ops/service-build/': [
                 '',
                 'database',
                 'ethereum-client-go',
                 'other'
             ],
+            // K8S相关
             '/dev-ops/kubernetes/': [
                 '',
                 'ubuntu-install-k8s',
@@ -35,6 +37,7 @@ module.exports = {
                 'master-ip-change',
                 'restart-pod',
             ],
+            // BLZO脚手架文档
             '/blzo/': [
                 '',
                 'manage-dev',
@@ -53,6 +56,11 @@ module.exports = {
                 'blzo-ex-task',
                 'blzo-ex-google-auth',
                 'blzo-ex-authj'
+            ],
+            // 架构
+            '/architect/': [
+                '',
+                'distributed-timed-tasks',
             ],
             // fallback
            
