@@ -10,6 +10,7 @@ sidebar: auto
 
 ## 方法一
 记事本打开 VMX 文件  类似  Windows * .vmx，在文本末尾加入一行
+
 ```
 monitor_control.restrict_backdoor = "TRUE"
 ```
@@ -19,6 +20,7 @@ monitor_control.restrict_backdoor = "TRUE"
 ## 方法二
 
 如果方法一还被检测可以再加入一行
+
 ```
 disable_acceleration = "TRUE"
 ```
@@ -27,6 +29,7 @@ disable_acceleration = "TRUE"
 ## 方法三
 
 打开注册表路径:
+
 ```
 HKEY_LOCAL_MACHINE/SYSTEM/CurrentControlSet/Control/Class/{4D36E968-E325-11CE-BFC1-08002BE10318}/0000
 ```

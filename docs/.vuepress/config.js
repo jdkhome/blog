@@ -1,5 +1,5 @@
 module.exports = {
-    title: 'jdkhome',
+    title: 'JDKHOME',
     description: 'linkji\'s blog.',
     head: [
         ['link', { rel: 'icon', href: '/img/logo.png' }],
@@ -7,13 +7,12 @@ module.exports = {
     ],
     themeConfig: {
         nav: [
-            { text: '服务搭建', link: '/dev-ops/service-build/' },
-            { text: 'links', link: '/links' },
+            // { text: '服务搭建', link: '/dev-ops/service-build/' },
+            { text: '友链', link: '/links' },
             {
-                text: 'about', items: [
-                    { text: 'github', link: 'https://www.github.com/jdkhome' },
-                    { text: 'gitee', link: 'https://gitee.com/jdkhome' },
-                    { text: 'me', link: '/about.md' }
+                text: '关于', items: [
+                    { text: '版权声明', link: '/license.md' },
+                    { text: '关于我', link: '/about.md' },
                 ]
             },
         ],
