@@ -29,3 +29,4 @@ sudo ./omnicored --datadir=/data2/usdt -txindex -daemon -server -rest -rpcallowi
 # 查看工作状态
 ./omnicore-cli getnetworkinfo
 ```
+

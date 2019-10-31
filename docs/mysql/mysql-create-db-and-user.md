@@ -7,14 +7,14 @@ sidebar: auto
 
 ```sql
 
-# 创建名称为“testdb”数据库，并设定编码集为utf8mb4
-CREATE DATABASE IF NOT EXISTS testdb DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_general_ci;
+# 创建名称为“test_db”数据库，并设定编码集为utf8mb4
+CREATE DATABASE IF NOT EXISTS test_db DEFAULT CHARSET utf8mb4 COLLATE utf8mb4_general_ci;
 
-# 创建了一个名为：test 密码为：123456 的用户
-create user test@'%' identified by '123456';
+# 创建了一个名为：test_user 密码为：123456 的用户
+CREATE USER test_user@'%' identified BY '123456';
 
-# 将testdb所有权限 授权给 用户test
-grant all privileges on testdb.* to test@'%';
+# 将testdb所有权限 授权给 用户test_user
+GRANT ALL PRIVILEGES ON test_db.* TO test_user@'%';
 
 ```
 
