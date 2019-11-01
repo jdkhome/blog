@@ -12,7 +12,7 @@
 ## 运维相关
 
 - [Kubernetes学习记录](/dev-ops/kubernetes/) 我的k8s实践
-- [常用服务搭建](/dev-ops/service-build/)
+- [常用服务搭建](/dev-ops/deploy/)
 
 #### Docker
 - [清理docker占用的磁盘空间](/dev-ops/clean-docker-disk.md)

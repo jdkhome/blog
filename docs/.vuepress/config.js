@@ -18,10 +18,11 @@ module.exports = {
         ],
         sidebar: {
             // 常用服务搭建文档
-            '/dev-ops/service-build/': [
+            '/dev-ops/deploy/': [
                 '',
                 'database',
                 'ethereum-client-go',
+                'seata',
                 'other'
             ],
             // K8S相关
