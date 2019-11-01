@@ -2,8 +2,6 @@
 
 目前我使用的是最新的 [v0.9.0](https://github.com/seata/seata/releases)版本 后续随着我的项目迭代也会持续跟进并更新这片文章。
 
-## 获取seata发行版
-
 ## 准备配置
 
 ### 修改 registry.conf 中使用的注册中心 和 配置中心
@@ -326,7 +324,7 @@ docker run -d \
 --restart always \
 --name seata-server \
 -p 8091:8091 \
--v /data/seata/register.conf:/var/app/seata/conf/register.conf \
+-v /data/seata/registry.conf:/var/app/seata/conf/registry.conf \
 -v /data/seata/file.conf:/var/app/seata/conf/file.conf \
 jdkhome/seata:0.9.0 \
 sh ./seata/bin/seata-server.sh -h 192.168.12.186 -p 8091
