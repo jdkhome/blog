@@ -37,7 +37,7 @@ Disk identifier: 0x2a29dea3
 sudo fdisk /dev/xvdf
 ```
 
-一路回车最后按w保存即可
+输入n创建新分区，然后一路回车最后 输入w保存即可
 
 ### 格式化
 

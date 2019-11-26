@@ -29,3 +29,8 @@ WORKDIR /var/app/omnicore-0.6.0/bin
 
 CMD ["./omnicored","--datadir=/data/usdt","-txindex","-server","-rest","-rpcallowip=0.0.0.0/0","-startclean"]
 ```
+
+## 相关资源
+
+- [BTC rpc文档](https://bitcoincore.org/en/doc/0.18.0/rpc/blockchain/getbestblockhash/)
+- [omni rpc文档](https://github.com/OmniLayer/omnicore/blob/master/src/omnicore/doc/rpc-api.md)
