@@ -8,7 +8,7 @@
 ## 开源项目
 
 - [BLZO](/blzo) 基于springboot的企业级超级脚手架！  
-- [onedrive-ftp](/dev-ops/deploy/onedrive-ftp.html) 将OneDrive部署成为FTP服务!
+- [OneDrive-FTP](/dev-ops/deploy/onedrive-ftp.html) 将OneDrive部署成为FTP服务!
 
 ## some
 
