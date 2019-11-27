@@ -1,6 +1,5 @@
 # "超级" ftp服务搭建
 
-
 ## 话不多说, 先放成果
 
 - 启动一个docker容器即可获得开箱即用的ftp服务，这个ftp服务**自带5TB的存储空间**。
@@ -16,6 +15,9 @@ jstaf/onedriver 实现了一个网络文件系统 并能够将 OneDrive 挂载�
 jstaf的想法非常棒！这正是我想要的 我在这位大佬的基础上加上了 docker 和 vsftpd
 
 于是我最终实现了 [onedrive-ftp](https://github.com/jdkhome/onedrive-ftp) 
+
+当然，你也可以直接使用jstaf/onedriver ,封装成ftp服务只是因为我个人有一些其他需求 :)
+
 
 ## 部署
 
@@ -65,7 +67,7 @@ docker restart ftp
 
 #### 附图
 
-![](./super-ftp/deploy.png)
+![](./onedrive-ftp/deploy.png)
 
 至此部署已完成。
 以后无论怎么重启容器都不需要再做上面的操作了。
