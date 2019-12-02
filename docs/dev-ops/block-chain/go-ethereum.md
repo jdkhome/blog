@@ -1,7 +1,8 @@
 # 以太坊节点搭建
 
-主链
-```
+## 主链
+
+```sh
 sudo docker run -d \
 --name ethereum \
 --restart=always \
@@ -12,8 +13,9 @@ ethereum/client-go \
 --rpc --rpcaddr 0.0.0.0 
 ```
 
-测试链
-```
+## 测试链
+
+```sh
 sudo docker run -d \
 --name ethereum \
 --restart=always \

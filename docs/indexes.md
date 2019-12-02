@@ -8,7 +8,7 @@
 ## 技术思考
 
 - [分布式定时任务解决方案](/architect/distributed-timed-tasks.md)
-- [java常量之哲学](/java/java-constant.md)
+- [java常量之哲学](/architect/java-constant.md)
 
 ## 运维相关
 
@@ -16,14 +16,16 @@
 - [常用服务搭建](/dev-ops/deploy/)
 
 #### Docker
-- [清理docker占用的磁盘空间](/dev-ops/clean-docker-disk.md)
-- [docker 容器内访问宿主机 "No route to host"](/dev-ops/docker-no-route-to-host.md)
-- [docker设置自动启动](/dev-ops/docker-set-auto-start.md)
-- [Docker 启动容器报错 : service endpoint with name xxx already exists.](/dev-ops/service-endpoint-with-name-xxx-already-exists.md)
+- [清理docker占用的磁盘空间](/dev-ops/docker/clean-docker-disk.md)
+- [docker设置自动启动](/dev-ops/docker/docker-set-auto-start.md)
+- [docker 容器内访问宿主机 "No route to host"](/dev-ops/docker/docker-no-route-to-host.md)
+- [Docker 启动容器报错 : service endpoint with name xxx already exists.](/dev-ops/docker/service-endpoint-with-name-xxx-already-exists.md)
 
 #### Linux
-- [linux添加磁盘和挂载](/dev-ops/linux-add-disk.md)
-- [linux 关闭交换空间](/dev-ops/linux-close-swap.md)
+- [linux添加磁盘和挂载](/dev-ops/linux/linux-add-disk.md)
+- [linux 关闭交换空间](/dev-ops/linux/linux-close-swap.md)
+- [ubuntu设置root密码](/dev-ops/linux/ubuntu-set-root-pwd.md)
+- [ubuntu 安装最新版本go](/dev-ops/linux/ubuntu-install-newest-go.md)
 
 ## 杂货
 

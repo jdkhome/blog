@@ -20,9 +20,13 @@ module.exports = {
             '/dev-ops/deploy/': [
                 '',
                 'database',
-                'ethereum-client-go',
                 'seata',
                 'other'
+            ],
+            '/dev-ops/block-chain/': [
+                '',
+                'omnicore',
+                'go-ethereum'
             ],
             // K8S相关
             '/dev-ops/kubernetes/': [
@@ -65,6 +69,6 @@ module.exports = {
            
         },
         sidebarDepth: 2,
-        lastUpdated: 'Last Updated',
+        lastUpdated: true,
     },
 }
