@@ -53,4 +53,4 @@ public interface Constants {
 
 ## 参考链接
 
-[Java Interface 是常量存放的最佳地点吗？](https://www.ibm.com/developerworks/cn/java/l-java-interface/index.html)	bright
+- [Java Interface 是常量存放的最佳地点吗？](https://www.ibm.com/developerworks/cn/java/l-java-interface/index.html)	bright
