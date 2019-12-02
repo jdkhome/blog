@@ -10,7 +10,7 @@ sidebar: auto
 
 ## Class 常量类
 
-```
+```java
 //final修饰符
 public final class Constants {
     //私有构造方法
@@ -24,7 +24,7 @@ public final class Constants {
 
 ## Interface 常量接口
 
-```
+```java
 public interface Constants {
     int ConstantA = 100;
     int ConstantB = 100;
