@@ -7,7 +7,6 @@ module.exports = {
     ],
     themeConfig: {
         nav: [
-            // { text: '服务搭建', link: '/dev-ops/service-build/' },
             { text: '友链', link: '/links' },
             {
                 text: '关于', items: [

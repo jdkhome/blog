@@ -3,6 +3,7 @@
 ## 开源项目
 
 - [BLZO企业级开发脚手架](/blzo/)
+- [OneDrive-FTP](/dev-ops/deploy/onedrive-ftp.html)
 
 ## 技术思考
 
