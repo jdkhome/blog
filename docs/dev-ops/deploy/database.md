@@ -7,7 +7,7 @@ sudo docker run -d \
 --restart=always \
 --name mysql \
 -p 3306:3306 \
--v /data/mysql/data:/var/lib/mysql \
+-v /data/mysql:/var/lib/mysql \
 -e MYSQL_ROOT_PASSWORD=xxxxxx \
 mysql:5.7
 ```

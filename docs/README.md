@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: null
+heroImage: /img/banner.png
 heroText: null
 tagline: null
 actionText: null

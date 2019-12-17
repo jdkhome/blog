@@ -39,6 +39,7 @@ module.exports = {
                 'proactive-log-cleanup',
                 'master-ip-change',
                 'restart-pod',
+                'jenkins-pipeline-k8s',
             ],
             // BLZO脚手架文档
             '/blzo/': [
@@ -59,6 +60,10 @@ module.exports = {
                 'blzo-ex-task',
                 'blzo-ex-google-auth',
                 'blzo-ex-authj'
+            ],
+            '/twiggy/':[
+                '',
+                'quick-start',
             ],
             // 架构
             '/architect/': [
