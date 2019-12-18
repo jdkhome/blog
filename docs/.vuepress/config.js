@@ -62,8 +62,24 @@ module.exports = {
                 'blzo-ex-authj'
             ],
             '/twiggy/':[
-                '',
-                'quick-start',
+                {
+                    title: 'Twiggy',
+                    collapsable: false,
+                    children: [
+                        '',
+                        'scene',
+                    ]
+                },
+                {
+                    title: '快速开始',
+                    collapsable: false,
+                    children: [
+                        'what-does-need-user-to-do',
+                        'basic-concept',
+                        'mod',
+                        'preview',
+                    ]
+                }
             ],
             // 架构
             '/architect/': [
