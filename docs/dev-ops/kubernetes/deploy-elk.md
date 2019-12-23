@@ -43,6 +43,8 @@ spec:
      labels:
        app: elk
     spec:
+     nodeSelector:
+      type: elk
      containers:
      - name: elk
        image: jdkhome/elk:0.0.1

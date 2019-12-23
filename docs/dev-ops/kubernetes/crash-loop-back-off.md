@@ -102,4 +102,4 @@ sudo sysctl -p
 
 补充
 
-> 要么在Kubernets 把elk的Pod部署在固定的Node, 要么修改所有Node的vm.max_map_count。 我选择了后者。
+> 要么在Kubernets 把elk的Pod部署在固定的Node, 要么修改所有Node的vm.max_map_count。 我选择了前者，见[分配pod到指定的节点](kubernetes-assigning-pod-to-nodes.md)。

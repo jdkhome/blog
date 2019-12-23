@@ -19,6 +19,8 @@ module.exports = {
             // 常用服务搭建文档
             '/dev-ops/deploy/': [
                 '',
+                'nginx',
+                'mongodb',
                 'database',
                 'seata',
                 'other'
@@ -39,6 +41,7 @@ module.exports = {
                 'proactive-log-cleanup',
                 'master-ip-change',
                 'restart-pod',
+                'kubernetes-assigning-pod-to-nodes',
                 'jenkins-pipeline-k8s',
             ],
             // BLZO脚手架文档

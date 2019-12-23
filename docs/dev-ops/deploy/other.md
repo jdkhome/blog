@@ -1,96 +1,8 @@
 # 其他服务搭建
 
-## nginx
-
-```
-docker run -d \
---restart=always \
--p 80:80 -p 443:443 \
---privileged=true \
---name nginx \
--v /data/nginx/conf.d:/etc/nginx/conf.d \
--v /data/nginx/ssl:/ssl \
--v /data/nginx/nginx.conf:/etc/nginx/nginx.conf \
--v /data/nginx/static:/static \
-nginx
-```
-
-nginx.conf
-```
-user  nginx;
-worker_processes  2;
-
-error_log  /var/log/nginx/error.log warn;
-pid        /var/run/nginx.pid;
-
-
-events {
-    use epoll;
-    worker_connections  60000;
-}
-
-http {
-    include       /etc/nginx/mime.types;
-    default_type  application/octet-stream;
-
-    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
-                      '$status $body_bytes_sent "$http_referer" '
-                      '"$http_user_agent" "$http_x_forwarded_for"';
-
-    access_log  /var/log/nginx/access.log  main;
-
-    sendfile        on;
-    #tcp_nopush     on;
-
-    keepalive_timeout  65;
-
-    #gzip  on;
-
-
-    #client_header_buffer_size 16k;
-    #large_client_header_buffers 48k
-
-    include /etc/nginx/conf.d/*.conf;
-
-}
-```
-
-示例 xxx.conf
-```
-server {
-    listen	443 ssl;
-    server_name  xxx.domain.com;
-
-    ssl_certificate /ssl/xxx/xxx.crt;
-    ssl_certificate_key /ssl/xxx/xxx.key;
-	    
-    location / {
-        proxy_pass   http://192.168.1.123:8080;
-    #    proxy_redirect  off;
-        proxy_set_header        Host    xxx.domain.com;
-        proxy_set_header        X-Real-IP       $remote_addr;
-        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header   Cookie $http_cookie;
-        chunked_transfer_encoding       off;
-    }
-
-#    port_in_redirect off;  
-}
-
-# http自动转到https协议
-server {
-    listen 80;
-    server_name xxx.domain.com;
-    return 301 https://$server_name$request_uri;
-}
-
-```
-
-
-
 ## EMQ
 
-```
+```sh
 sudo docker run -d -ti \
 --restart=always \
 --name emqx \
@@ -98,12 +10,15 @@ sudo docker run -d -ti \
 -p 1883:1883 \
 -p 8083:8083 \
 -p 8084:8084 \
+-p 8080:8080 \
 emqx/emqx
 ```
 
+默认账户密码 admin/pubic  
+部署之后进到后台(18083端口) 然后修改密码
+
+
 ## jenkins
-
-
 
 ```
 docker run -d \
@@ -124,7 +39,7 @@ jenkins/jenkins:lts-jdk11
 
 启动之后，从日志中获取**initialAdminPassword**
 
-```
+```sh
 docker logs -f jenkins
 ```
 
@@ -153,7 +68,7 @@ mritd/shadowsocks -s "-s 0.0.0.0 -p 9300 -m chacha20 -k xxxxx"
 
 ## consul
 
-```
+```sh
 sudo docker run -d \
 --restart always \
 --name consul \
@@ -161,9 +76,11 @@ sudo docker run -d \
 consul
 ```
 
+默认是没有访问权限控制的，可以再部署一个[nginx](nginx.md)来做访问控制
+
 ## sonarqube
 
-```
+```sh
 docker run -d --name sonarqube \
     -p 9000:9000 \
     -v /data/sonar/conf:/opt/sonarqube/conf \
@@ -173,10 +90,12 @@ docker run -d --name sonarqube \
     sonarqube
 ```
 
+默认账户密码 admin/admin  
+部署之后进到后台(9000端口) 然后修改密码
 
 ## rabbitmq
 
-```
+```sh
 sudo docker run -d \
 --restart=always \
 --name rabbitmq \
@@ -189,4 +108,6 @@ sudo docker run -d \
 -v /data/rabbitmq-plugins/:/plugins/my \
 rabbitmq:3.7.8-management
 ```
-初始账号 guest/guest
+
+默认账户密码 guest/guest  
+部署之后进到后台(15672端口) 然后修改密码

@@ -6,9 +6,15 @@
 
 ## 前置准备
 
-- 搭建k8s 集群
+- 搭建k8s 集群 
 - 搭建jenkins , 安装 Git、Pipeline、Gradle 插件
 - 搭建harbor
+
+记得要在集群中先建好namespace
+
+```sh
+kubectl create namespace xxxx
+```
 
 ## 配置jenkins基本凭证
 
