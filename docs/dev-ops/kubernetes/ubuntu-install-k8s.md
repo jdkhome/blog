@@ -72,7 +72,7 @@ deb https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main
 EOF
 
 sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-get install -y kubelet=1.16.1-00 kubeadm=1.16.1-00 kubectl
 ```
 
 ## 准备镜像
@@ -86,7 +86,12 @@ sudo apt-get install -y kubelet kubeadm kubectl
 通常，我们可以通过 [mirrorgooglecontainers](https://hub.docker.com/u/mirrorgooglecontainers) 来获取这些镜像  
 然后使用 docker tag 命令把镜像名改成k8s.gcr.io下的镜像。我在网络上搜索到的主要解决方案也是这样。
 
+
+
 ```
+# 查看需要的镜像
+kubeadm config images list
+
 # 拉取镜像
 sudo docker pull mirrorgooglecontainers/kube-apiserver-amd64:v1.16.1
 sudo docker pull mirrorgooglecontainers/kube-controller-manager-amd64:v1.16.1
