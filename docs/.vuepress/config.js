@@ -84,6 +84,27 @@ module.exports = {
                     ]
                 }
             ],
+            '/other/diy-computer/':[
+                {
+                    title: '什么是/为什么',
+                    collapsable: false,
+                    children: [
+                        '',
+                    ]
+                },
+                {
+                    title: '硬件知识科普',
+                    collapsable: false,
+                    children: [
+                        'cpu',
+                        'gpu',
+                        'mem',
+                        'disk',
+                        'board',
+                        'power',
+                    ]
+                },
+            ],
             // 架构
             '/architect/': [
                 '',
