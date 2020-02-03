@@ -107,8 +107,21 @@ module.exports = {
             ],
             // 架构
             '/architect/': [
-                '',
-                'distributed-timed-tasks',
+                {
+                    title: '序',
+                    collapsable: false,
+                    children: [
+                        '',
+                        'index/two-ways-for-programmers'
+                    ]
+                },
+                {
+                    title: '杂货',
+                    collapsable: false,
+                    children: [
+                        'other/distributed-timed-tasks',
+                    ]
+                },
             ],
             // fallback
            
