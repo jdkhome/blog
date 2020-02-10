@@ -61,7 +61,9 @@ network:
             dhcp4: no
             addresses: [192.168.12.144/24]
             optional: true
-            gateway4: 192.168.12.1    
+            gateway4: 192.168.12.1
+            nameservers:
+                    addresses: [114.114.114.114,8.8.8.8]
     version: 2
 ```
 
