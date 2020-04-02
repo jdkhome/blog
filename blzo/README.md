@@ -30,7 +30,6 @@
 - [blzo-ex-ip2region](/blzo-ex/blzo-ex-ip2region)ip定位城市
 - [blzo-ex-mqtt](/blzo-ex/blzo-ex-mqtt)使用mqtt协议推送数据
 - [blzo-ex-redission](/blzo-ex/blzo-ex-redission)轻松使用分布式锁
-- [blzo-ex-task](/blzo-ex/blzo-ex-task)分布式任务(开发中)
 - [blzo-ex-usignin](/blzo-ex/blzo-ex-usignin)用户登陆鉴权
 - [blzo-ex-authj](/blzo-ex/blzo-ex-authj)权限框架(自研的权限框架)
 - [blzo-ex-version](/blzo-ex/blzo-ex-version)接口版本管理
