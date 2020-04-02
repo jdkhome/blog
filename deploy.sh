@@ -4,10 +4,10 @@
 set -e
 
 # 生成静态文件
-sudo npm run docs:build
+vuepress build .
 
 # 进入生成的文件夹
-cd docs/.vuepress/dist
+cd .vuepress/dist
 echo 'www.jdkhome.com' > CNAME
 
 git init
