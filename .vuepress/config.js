@@ -58,9 +58,7 @@ module.exports = {
                 'blzo-ex-usignin',
                 'blzo-ex-redission',
                 'blzo-ex-ip2region',
-                'blzo-ex-consul',
                 'blzo-ex-mqtt',
-                'blzo-ex-task',
                 'blzo-ex-google-auth',
                 'blzo-ex-authj'
             ],

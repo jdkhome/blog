@@ -3,15 +3,17 @@
 可以用作btc 和 usdt节点
 
 ```sh
+
 docker run -d \
 --restart always \
 --name omnicore \
--p 8332:8332 \
--p 8333:8333 \
--v /data/bitcoin.conf:/root/.bitcoin/bitcoin.conf \
--v /data/omni:/data \
-jdkhome/omnicore:0.6.0 \
-./omnicored --datadir=/data -txindex -server -rest -rpcallowip=0.0.0.0/0 -rpcbind -rpcuser=RPC用户名 -rpcpassword=RPC密码 -startclean
+-p 8332:8332 -p 8333:8333 \
+-v /omni-data/bitcoin.conf:/root/.bitcoin/bitcoin.conf \
+-v /omni-data/data:/data \
+jdkhome/omnicore:0.8.1 \
+./omnicored --datadir=/data -txindex -server -rest -rpcallowip=0.0.0.0/0 -rpcbind -rpcuser=jdk -rpcpassword=1234abc 
+
+# 根据情况要是重启起不来可以在后面加个 -startclean
 ```
 
 附上我的Dockerfile
@@ -22,10 +24,10 @@ MAINTAINER main@jdkhome.com
 
 RUN mkdir /var/app
 RUN yum -y install wget
-RUN wget https://github.com/OmniLayer/omnicore/releases/download/v0.6.0/omnicore-0.6.0-x86_64-linux-gnu.tar.gz
-RUN tar -zxvf omnicore-0.6.0-x86_64-linux-gnu.tar.gz -C /var/app
+RUN wget https://github.com/OmniLayer/omnicore/releases/download/v0.8.1/omnicore-0.8.1-x86_64-linux-gnu.tar.gz
+RUN tar -zxvf omnicore-0.8.1-x86_64-linux-gnu.tar.gz -C /var/app
 
-WORKDIR /var/app/omnicore-0.6.0/bin
+WORKDIR /var/app/omnicore-0.8.1/bin
 
 CMD ["./omnicored","--datadir=/data/usdt","-txindex","-server","-rest","-rpcallowip=0.0.0.0/0","-startclean"]
 ```
