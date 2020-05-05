@@ -6,7 +6,7 @@ tagline: null
 actionText: null
 actionLink: null
 features: null
-footer: jdkhome ©2019-9102 
+footer: jdkhome ©2020-0202 
 ---
 
 <div class="panel">
@@ -33,3 +33,5 @@ footer: jdkhome ©2019-9102
    </div>
   </div>
 </div>
+
+<a href="http://www.miit.gov.cn/">鄂ICP备15015406号</a>
